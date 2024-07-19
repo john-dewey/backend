@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-w86zh7f%s=nz6bqib8cob*#7uz+&*qvb_d(av6)^wysir%kb7)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [".awsapprunner.com"]
+ALLOWED_HOSTS = [".awsapprunner.com", '127.0.0.1']
 
 # Application definition
 
@@ -55,6 +55,18 @@ MIDDLEWARE = [
     "whitenoise.middleware.WhiteNoiseMiddleware",
     
 ]
+
+STATIC_URL = "static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 
 ROOT_URLCONF = 'backend.urls'
 
